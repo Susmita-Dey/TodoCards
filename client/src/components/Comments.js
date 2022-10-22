@@ -17,8 +17,8 @@ const Comments = () => {
   };
 
   return (
-    <div className="comments__container">
-      <form className="comment__form" onSubmit={addComment}>
+    <div className="comments_container">
+      <form className="comment_form" onSubmit={addComment}>
         <label htmlFor="comment">Add a comment</label>
         <textarea
           placeholder="Type your comment..."
@@ -32,7 +32,7 @@ const Comments = () => {
         <button className="commentBtn">ADD COMMENT</button>
       </form>
 
-      <div className="comments__section">
+      <div className="comments_section">
         <h2>Existing Comments</h2>
         <div></div>
       </div>

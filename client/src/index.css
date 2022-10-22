@@ -79,13 +79,13 @@ a {
   text-transform: capitalize;
 }
 .pending_items {
-  background-color: #eee3cb;
+  background-color: #d89d1f;
 }
 .ongoing_items {
-  background-color: #d2daff;
+  background-color: #697fe3;
 }
 .completed_items {
-  background-color: #7fb77e;
+  background-color: #08b905;
 }
 .pending_container,
 .ongoing_container,
