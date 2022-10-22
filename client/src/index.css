@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Space Grotesk", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #f1f7ee;
+  height: 10vh;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.form_input {
+  min-height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input {
+  margin: 0 5px;
+  width: 50%;
+  padding: 10px 15px;
+}
+.addTodoBtn {
+  width: 150px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #367e18;
+  color: #fff;
+  border: none;
+  outline: none;
+  height: 43px;
+}
+.container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.completed_wrapper,
+.ongoing_wrapper,
+.pending_wrapper {
+  width: 32%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.ongoing_wrapper > h3,
+.pending_wrapper > h3,
+.completed_wrapper > h3 {
+  text-align: center;
+  text-transform: capitalize;
+}
+.pending_items {
+  background-color: #eee3cb;
+}
+.ongoing_items {
+  background-color: #d2daff;
+}
+.completed_items {
+  background-color: #7fb77e;
+}
+.pending_container,
+.ongoing_container,
+.completed_container {
+  width: 100%;
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.pending_items,
+.ongoing_items,
+.completed_items {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+.comment {
+  text-align: right;
+  font-size: 14px;
+  cursor: pointer;
+  color: rgb(85, 85, 199);
+}
+.comment:hover {
+  text-decoration: underline;
+}
+.comments_container {
+  padding: 20px;
+}
+.comment_form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.comment_form > label {
+  margin-bottom: 15px;
+}
+.comment_form textarea {
+  width: 80%;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.commentBtn {
+  padding: 10px;
+  width: 200px;
+  background-color: #367e18;
+  outline: none;
+  border: none;
+  color: #fff;
+  height: 45px;
+  cursor: pointer;
+}
+.comments_section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login_form {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login_form > label {
+  margin-bottom: 15px;
+}
+.login_form > input {
+  width: 70%;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+.login_form > button {
+  background-color: #367e18;
+  color: #fff;
+  padding: 15px;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  width: 200px;
+}
