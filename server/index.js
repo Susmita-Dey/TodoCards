@@ -1,28 +1,48 @@
 const express = require("express");
 const app = express();
-const PORT = 4000;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// New imports
-const http = require("http").Server(app);
 const cors = require("cors");
-const { title } = require("process");
-
-app.use(cors());
+const http = require("http").Server(app);
+const PORT = 4000;
 
 const socketIO = require("socket.io")(http, {
   cors: {
-    origin: "https://localhost:3000",
+    origin: "http://localhost:3000",
   },
 });
+
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
   socket.on("taskDragged", (data) => {
-    console.log(data);
+    // console.log(data);
+    const { source, destination } = data;
+
+    // Get the item that was dragged
+    const itemMoved = {
+      ...tasks[source.droppableId].items[source.any],
+    };
+    console.log("DraggedItem>>>", itemMoved);
+
+    // Remove the item from its source
+    tasks[source.droppableId].items.splice(source.index, 1);
+
+    // Add the item to its destination using its destination index
+    tasks[destination.droppableId].items.splice(
+      destination.index,
+      0,
+      itemMoved
+    );
+
+    // Sends the updated tasks object to the React app
+    socket.emit("tasks", tasks);
+
+    //  👇🏻 Print the items at the Source and Destination
+    console.log("Source >>>", tasks[source.droppableId].items);
+    console.log("Destination >>>", tasks[destination.droppableId].items);
   });
 
   socket.on("disconnect", () => {

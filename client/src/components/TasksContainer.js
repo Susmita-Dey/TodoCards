@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import socket from "socket.io-client";
 
-const TasksContainer = () => {
+const TasksContainer = ({ socket }) => {
   const [tasks, setTasks] = useState({});
 
   useEffect(() => {
     function fetchTasks() {
       fetch("http://localhost:4000/api")
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setTasks(data);
-        });
+        .then((data) => setTasks(data));
     }
     fetchTasks();
   }, []);
+
+  useEffect(() => {
+    socket.on("tasks", (data) => {
+      setTasks(data);
+    });
+  }, [socket]);
 
   const handleDragEnd = ({ destination, source }) => {
     if (!destination) return;
@@ -31,14 +33,9 @@ const TasksContainer = () => {
       destination,
     });
   };
-
   return (
     <div className="container">
       <DragDropContext onDragEnd={handleDragEnd}>
-        {/* 👇🏻 Returns an array of each tasks (Uncomment to view the data structure) */}
-
-        {Object.entries(tasks).map((task) => console.log(task))}
-
         {Object.entries(tasks).map((task) => (
           <div
             className={`${task[1].title.toLowerCase()}_wrapper`}
@@ -60,11 +57,13 @@ const TasksContainer = () => {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`${task[1].title.toLowerCase()}__items`}
+                            className={`${task[1].title.toLowerCase()}_items`}
                           >
                             <p>{item.title}</p>
                             <p className="comment">
-                              <Link to="/comments">
+                              <Link
+                                to={`/comments/${task[1].title}/${item.id}`}
+                              >
                                 {item.comments.length > 0
                                   ? `View Comments`
                                   : "Add Comment"}
